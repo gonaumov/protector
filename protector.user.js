@@ -11,6 +11,8 @@ var script = document.createElement('script');
 script.type = "text/javascript"; 
 function main() {
     function cleanProtection() {
+		var maxInterval = 180000;
+        var starTime = (new Date()).getTime();		
 		var css = ["* {",
 		  "-webkit-touch-callout: default !important;",
 		  "-webkit-user-select: auto !important;",
@@ -39,10 +41,14 @@ function main() {
 		document.body.onkeydown = function () {}
 		document.body.onselectstart = function () {}
 		document.body.ondragstart = function () {}
-		document.onmousedown = function () {}
+		document.onmousedown = null
 	}
 	cleanProtection();
-	document.onmousedown = cleanProtection;
+	setTimeout(function clear() {
+		if(((new Date()).getTime() - starTime) < maxInterval || typeof document.onmousedown == "function") {
+			setTimeout(clear,100);
+		}
+	}, 100);
 };
 script.textContent = "(" + main.toString() + ")();";
 document.getElementsByTagName('head')[0].appendChild(script);
