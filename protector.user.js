@@ -6,37 +6,43 @@
 // @include http://*
 // @include https://*
 // @include *
-// @grant        unsafeWindow
 // ==/UserScript==
-
-(function() {
-    const css = `* {
-      -webkit-touch-callout: default !important;
-      -webkit-user-select: auto !important;
-      -khtml-user-select: auto !important;
-      -moz-user-select: auto !important;
-      -ms-user-select: auto !important;
-      user-select: auto !important;
-      cursor: auto !important;
-      -webkit-tap-highlight-color: black !important;
-    }`;
-    const head = unsafeWindow.document.head || unsafeWindow.document.getElementsByTagName('head')[0];
-    const style = unsafeWindow.document.createElement('style');
-    head.appendChild(style);
-    style.type = 'text/css';
-    style.appendChild(unsafeWindow.document.createTextNode(css));
-    if (typeof unsafeWindow.document.body.style.MozUserSelect != "undefined") {
-      unsafeWindow.document.body.style.MozUserSelect = "auto";
-    }
-    unsafeWindow.document.body.style.cursor = "default";
-    unsafeWindow.document.ondragstart = function () {}
-    unsafeWindow.document.oncontextmenu = function () {}
-    unsafeWindow.document.onkeydown = function () {}
-    unsafeWindow.document.onselectstart = function () {}
-    unsafeWindow.document.body.ondragstart = function () {}
-    unsafeWindow.document.body.oncontextmenu = function () {}
-    unsafeWindow.document.body.onkeydown = function () {}
-    unsafeWindow.document.body.onselectstart = function () {}
-    unsafeWindow.document.body.ondragstart = function () {}
-    unsafeWindow.document.onmousedown = function () {}
-})();
+var script = document.createElement('script'); 
+script.type = "text/javascript"; 
+function main() {
+    function cleanProtection() {
+		var css = ["* {",
+		  "-webkit-touch-callout: default !important;",
+		  "-webkit-user-select: auto !important;",
+		  "-khtml-user-select: auto !important;",
+		  "-moz-user-select: auto !important;",
+		  "-ms-user-select: auto !important;",
+		  "user-select: auto !important;",
+		  "cursor: auto !important;",
+		  "-webkit-tap-highlight-color: black !important;",
+		"}"].join("\n");
+		var head = document.head || document.getElementsByTagName('head')[0];
+		var style = document.createElement('style');
+		head.appendChild(style);
+		style.type = 'text/css';
+		style.appendChild(document.createTextNode(css));
+		if (typeof document.body.style.MozUserSelect != "undefined") {
+		  document.body.style.MozUserSelect = "auto";
+		}
+		document.body.style.cursor = "default";
+		document.ondragstart = function () {}
+		document.oncontextmenu = function () {}
+		document.onkeydown = function () {}
+		document.onselectstart = function () {}
+		document.body.ondragstart = function () {}
+		document.body.oncontextmenu = function () {}
+		document.body.onkeydown = function () {}
+		document.body.onselectstart = function () {}
+		document.body.ondragstart = function () {}
+		document.onmousedown = function () {}
+	}
+	cleanProtection();
+	document.onmousedown = cleanProtection;
+};
+script.textContent = "(" + main.toString() + ")();";
+document.getElementsByTagName('head')[0].appendChild(script);
