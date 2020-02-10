@@ -10,9 +10,10 @@
 var script = document.createElement('script'); 
 script.type = "text/javascript"; 
 function main() {
-    function cleanProtection() {
-		var maxInterval = 180000;
-        var starTime = (new Date()).getTime();		
+	const maxInterval = 180000;
+	const starTime = (new Date()).getTime();
+
+	function cleanProtection() {
 		var css = ["* {",
 		  "-webkit-touch-callout: default !important;",
 		  "-webkit-user-select: auto !important;",
