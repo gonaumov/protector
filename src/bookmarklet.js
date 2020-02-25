@@ -1,16 +1,4 @@
-// ==UserScript==
-// @name         Blocking selection protector
-// @version      0.1
-// @description  Protection against blocking of user selection
-// @author       Georgi Naumov
-// @include http://*
-// @include https://*
-// @include *
-// ==/UserScript==
-const script = document.createElement('script');
-script.type = "text/javascript";
-
-function main() {
+javascript:(() => {
     const head = document.getElementsByTagName('head')[0];
     const style = document.createElement('style');
     head.appendChild(style);
@@ -38,8 +26,4 @@ function main() {
         window.addEventListener(eventType, (event) =>
             event.stopPropagation(), true);
     })
-
-}
-
-script.textContent = "(" + main.toString() + ")();";
-document.getElementsByTagName('head')[0].appendChild(script);
+})()
