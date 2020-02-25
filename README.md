@@ -7,5 +7,5 @@ it on very well protected site. Frankly I would never visit a site
 which make things like that. You can use that script from TamperMonkey 
 and GreaseMonkey. 
 
-[Click here](http://gonaumov.github.io/protector)
+[Click here](http://gonaumov.github.io/protector/)
 if you want to install the latest version as a bookmarklet.  
